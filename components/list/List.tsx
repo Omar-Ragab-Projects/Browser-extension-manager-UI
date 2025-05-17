@@ -4,8 +4,10 @@ import Filter from "./Filter";
 import Image from "next/image";
 import Toggle from "../ui/Toggle";
 
+import type { Extension } from "./Filter"; // or wherever Extension is defined
+
 function List() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Extension[]>([]);
   const extentionsList = data.map((ext, index) => (
     <li
       key={index}

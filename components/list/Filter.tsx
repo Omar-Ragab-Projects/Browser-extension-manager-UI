@@ -1,7 +1,18 @@
 import React, { useEffect, useState } from "react";
 import data from "@/lib/data.json";
 
-function Filter({ setData }) {
+export type Extension = {
+  logo: string;
+  name: string;
+  description: string;
+  isActive: boolean;
+};
+
+function Filter({
+  setData,
+}: {
+  setData: React.Dispatch<React.SetStateAction<Extension[]>>;
+}) {
   const [filter, setFilter] = useState("all");
   useEffect(() => {
     if (filter == "all") {
