@@ -1,26 +1,66 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-Neutral-900: hsl(227, 75%, 14%);
+  --color-Neutral-800: hsl(226, 25%, 17%);
+  --color-Neutral-700: hsl(225, 23%, 24%);
+  --color-Neutral-600: hsl(226, 11%, 37%);
+  --color-Neutral-300: hsl(0, 0%, 78%);
+  --color-Neutral-200: hsl(217, 61%, 90%);
+  --color-Neutral-100: hsl(0, 0%, 93%);
+  --color-Neutral-0: hsl(200, 60%, 99%);
+  --color-Red-400: hsl(3, 86%, 64%);
+  --color-Red-500: hsl(3, 71%, 56%);
+  --color-Red-700: hsl(3, 77%, 44%);
+  --color-Light-Gradient: linear-gradient(180deg, #ebf2fc 0%, #eef8f9 100%);
+  --color-Dark-Gradient: linear-gradient(180deg, #040918 0%, #091540 100%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html:has(body.dark) {
+  background-image: var(--color-Dark-Gradient);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  background-color: var(--color-Neutral-200);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  min-height: 100vh;
+}
+
+@layer base {
+  .container {
+    @apply mx-auto px-4;
+  }
+  h3 {
+    @apply font-bold text-3xl text-neutral-900 dark:text-white;
+  }
+  h5 {
+    @apply font-bold text-lg dark:text-white;
+  }
+  p {
+    @apply m-0 text-2xl leading-8 text-gray-500;
+  }
+  button {
+    @apply rounded-2xl bg-white text-neutral-900 py-1 px-4 cursor-pointer dark:bg-Neutral-800 dark:text-neutral-300;
+  }
+  button.active {
+    @apply bg-Red-500 text-white;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .simple-btn {
+    @apply rounded-full py-1 px-2 border border-gray-400 dark:border-gray-600 text-sm;
+  }
+}
+
+@utility flex-between {
+  @apply flex items-center justify-between;
+}
+
+@utility hover-effect {
+  @apply scale-105   -translate-x-1 -translate-y-1;
 }
